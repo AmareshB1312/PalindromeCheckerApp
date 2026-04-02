@@ -4,20 +4,21 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
         String input = "madam";
 
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Insert characters into queue and stack
+        // Insert characters into deque
         for (char ch : input.toCharArray()) {
-            queue.add(ch);   // Enqueue
-            stack.push(ch);  // Push
+            deque.addLast(ch);  // insert at rear
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue and pop
-        while (!queue.isEmpty()) {
-            if (!queue.remove().equals(stack.pop())) {
+        // Compare front and rear
+        while (deque.size() > 1) {
+            char front = deque.removeFirst(); // from front
+            char rear = deque.removeLast();   // from rear
+
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
