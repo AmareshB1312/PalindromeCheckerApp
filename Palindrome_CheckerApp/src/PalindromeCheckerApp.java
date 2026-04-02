@@ -1,15 +1,26 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         String original = "madam";
-        String reversed = "";
 
-        // Step 1: Reverse using loop
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        // Step 1: Convert to char array
+        char[] chars = original.toCharArray();
+
+        int start = 0;
+        int end = chars.length - 1;
+        boolean isPalindrome = true;
+
+        // Step 2: Two-pointer comparison
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
 
-        // Step 2: Compare strings
-        if (original.equals(reversed)) {
+        // Step 3: Display result
+        if (isPalindrome) {
             System.out.println("Palindrome");
         } else {
             System.out.println("Not a Palindrome");
