@@ -1,28 +1,24 @@
 public class PalindromeCheckerApp {
-
-    // Recursive function
-    public static boolean isPalindrome(String str, int left, int right) {
-        // Base condition
-        if (left >= right) {
-            return true;
-        }
-
-        // Check mismatch
-        if (str.charAt(left) != str.charAt(right)) {
-            return false;
-        }
-
-        // Recursive call
-        return isPalindrome(str, left + 1, right - 1);
-    }
-
     public static void main(String[] args) {
-        String input = "madam";
+        String input = "A man a plan a canal Panama";
 
-        if (isPalindrome(input, 0, input.length() - 1)) {
-            System.out.println(input + " is a Palindrome");
-        } else {
-            System.out.println(input + " is NOT a Palindrome");
+        // Normalize string: remove spaces and convert to lowercase
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+        // Check palindrome
+        boolean isPalindrome = true;
+        int left = 0;
+        int right = normalized.length() - 1;
+
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
         }
+
+        System.out.println(isPalindrome ? "Palindrome" : "Not a Palindrome");
     }
 }
